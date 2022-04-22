@@ -1,0 +1,29 @@
+import React from "react";
+
+const Posts = ({ posts, loading, searchTerm }) => {
+  if (loading) {
+    return <h2>Loading...</h2>;
+  }
+
+  return (
+    <ul className="list-group mb-4">
+      {posts
+        .filter((val) => {
+          if (searchTerm === "") {
+            return val;
+          } else if (
+            val.title.toLowerCase().includes(searchTerm.toLowerCase())
+          ) {
+            return val;
+          }
+        })
+        .map((post) => (
+          <li key={post.id} className="list-group-item">
+            {post.title}
+          </li>
+        ))}
+    </ul>
+  );
+};
+
+export default Posts;
